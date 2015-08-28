@@ -5,19 +5,18 @@ module RedmineOverwritingRoles
         base.class_eval do
           unloadable
 
-          def permissions
-            @roles = Role.sorted.to_a
-            @permissions = Redmine::AccessControl.permissions.select { |p| !p.public? }
-            if request.post?
-              @roles.each do |role|
-                role.permissions = params[:permissions][role.id.to_s]
-                role.save
+          before_save :assign_project_role
+
+          def assign_project_role
+            project_roles = self.roles
+            project.roles.each do |role|
+              if ProjectRole.where("name = ? AND project_id = ?", self.project_id)
+                member.project_role_id =
+              else
+
               end
-              flash[:notice] = l(:notice_successful_update)
-              redirect_to roles_path
             end
           end
-
         end
       end
     end

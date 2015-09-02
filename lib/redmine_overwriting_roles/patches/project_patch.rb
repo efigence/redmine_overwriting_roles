@@ -5,7 +5,6 @@ module RedmineOverwritingRoles
         base.class_eval do
           unloadable
 
-          has_many :roles
 
         end
       end

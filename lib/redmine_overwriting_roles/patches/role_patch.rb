@@ -5,13 +5,7 @@ module RedmineOverwritingRoles
         base.class_eval do
           unloadable
 
-          before_save :check_if_name_exists
-
-          def check_if_name_exists
-            if Role.exists?(name: self.name)
-              self.name += self.project.id
-            end
-          end
+          has_many :project_roles
 
         end
       end

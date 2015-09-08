@@ -3,6 +3,4 @@ class ProjectRole < ActiveRecord::Base
 
   belongs_to :role
 
-  attr_accessor :project_id
-
 end

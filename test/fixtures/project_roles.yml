@@ -1,0 +1,72 @@
+---
+project_roles_001:
+  name: Manager
+  id: 1
+  project_id: 1
+  role_id: 1
+  builtin: 0
+  issues_visibility: all
+  users_visibility: all
+  permissions: |
+    ---
+    - :add_project
+    - :edit_project
+    - :close_project
+
+  position: 1
+project_roles_002:
+  name: Developer
+  id: 2
+  project_id: 1
+  role_id: 2
+  builtin: 0
+  issues_visibility: default
+  users_visibility: all
+  permissions: |
+    ---
+    - :edit_project
+    - :manage_members
+    - :manage_versions
+
+  position: 2
+project_roles_003:
+  name: Reporter
+  id: 3
+  project_id: 1
+  role_id: 3
+  builtin: 0
+  issues_visibility: default
+  users_visibility: all
+  permissions: |
+    ---
+    - :view_issues
+    - :add_issues
+    - :edit_issues
+
+  position: 3
+project_roles_004:
+  name: Non member
+  id: 4
+  project_id: 1
+  role_id: 4
+  builtin: 1
+  issues_visibility: default
+  users_visibility: all
+  permissions: |
+    ---
+    - :view_wiki_pages
+    - :view_wiki_edits
+    - :edit_wiki_pages
+
+  position: 4
+project_roles_005:
+  name: Anonymous
+  id: 5
+  project_id: 1
+  role_id: 5
+  builtin: 2
+  issues_visibility: default
+  users_visibility: all
+  permissions: |
+    ---
+    - :view_issues

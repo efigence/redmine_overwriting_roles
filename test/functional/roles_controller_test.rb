@@ -13,8 +13,12 @@ class ProjectRoleTest < ActiveSupport::TestCase
   def test_should_create_project_role_with_context
     role = roles(:roles_001)
     assert_difference('ProjectRole.count') do
-      role.update(name: "Update test") # context?!
+      role.project_id = Project.first.id
+      role.update(name: "Update test")
+      byebug
     end
+    assert_not_equal "Update test", role.name
+    assert_equal "Update test", ProjectRole.last.name
   end
 
 end

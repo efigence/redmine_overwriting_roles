@@ -5,12 +5,13 @@ class ProjectRoleTest < ActiveSupport::TestCase
 
   def test_should_check_permissions_without_context
     role = roles(:roles_001)
-    assert_equal true, role.allowed_to?(Role.last.permissions.last)
+    assert_equal true, role.allowed_to?(role.permissions.last)
   end
 
   def test_should_check_permissions_in_project_context
     role = roles(:roles_001)
-    assert_equal false, role.allowed_to?(Role.last.permissions.last, Project.first)
+    byebug
+    assert_equal false, role.allowed_to?(role.permissions.last, Project.first)
   end
 
 end

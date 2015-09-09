@@ -2,3 +2,5 @@
 en:
   # my_label: "My label"
   project_roles_settings: Roles
+  restore_default_permissions: Reset default permissions
+  notice_successfull_reset: Successful reset

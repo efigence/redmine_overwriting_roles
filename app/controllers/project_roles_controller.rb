@@ -1,7 +1,7 @@
 class ProjectRolesController < ApplicationController
 
   before_filter :find_project
-  before_filter :find_role, only: [:save, :edit]
+  before_filter :find_role, only: [:save, :edit, :reset]
 
   def index
     @roles = Role.all
@@ -15,11 +15,19 @@ class ProjectRolesController < ApplicationController
     @project_role = find_project_role || build_project_role
     @project_role.permissions = params[:project_role][:permissions]
     if @project_role.save
-      flash[:notice] = l(:notice_successful_create)
+      flash[:notice] = l(:notice_successful_update)
       redirect_to "/projects/#{@project.id}/settings/roles"
     else
       render :action => 'edit'
     end
+  end
+
+  def reset
+    @project_role = find_project_role || build_project_role
+    @project_role.permissions = @role.permissions
+    @project_role.save
+    flash[:notice] = l(:notice_successfull_reset)
+    redirect_to edit_project_role_path(@project, @role)
   end
 
   private

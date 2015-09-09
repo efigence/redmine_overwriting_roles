@@ -14,5 +14,6 @@
     </fieldset>
 <% end %>
 <br /><%= check_all_links 'permissions' %>
+<br/><%= link_to l(:restore_default_permissions), reset_project_role_path(@project, @role) %>
 <%= hidden_field_tag 'project_role[permissions][]', '' %>
 </div>

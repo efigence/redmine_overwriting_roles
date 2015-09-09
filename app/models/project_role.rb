@@ -15,12 +15,8 @@ class ProjectRole < ActiveRecord::Base
 
   serialize :permissions, ::Role::PermissionsAttributeCoder
 
-  def setable_permissions
-    setable_permissions = Redmine::AccessControl.permissions - Redmine::AccessControl.public_permissions
-    setable_permissions -= Redmine::AccessControl.members_only_permissions
-    setable_permissions -= Redmine::AccessControl.loggedin_only_permissions
-    setable_permissions -= [:manage_project_activities]
-    setable_permissions
+  def roles_permissions
+    Setting.plugin_overwriting_roles["permissions"]
   end
 
   def permissions=(perms)

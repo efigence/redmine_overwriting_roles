@@ -7,8 +7,6 @@ module RedmineOverwritingRoles
 
           has_many :project_roles
 
-          before_save :create_project_role
-
           def allowed_to_with_project?(action, context = nil)
             if context != nil && context.is_a?(Project)
               project_role = project_roles.where(project_id: context.id).first

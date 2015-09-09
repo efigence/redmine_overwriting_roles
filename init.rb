@@ -6,6 +6,9 @@ Redmine::Plugin.register :redmine_overwriting_roles do
   url 'https://github.com/efigence/redmine_overwriting_roles'
   author_url 'https://github.com/efigence'
 
+  permission :manage_roles, { :project_roles => [:index, :edit, :reset, :save]}
+  settings :default => {'permissions' => []}, :partial => 'settings/project_role_settings'
+
   ActionDispatch::Callbacks.to_prepare do
     require 'redmine_overwriting_roles/patches/role_patch'
     require 'redmine_overwriting_roles/patches/projects_helper_patch'

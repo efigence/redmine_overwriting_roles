@@ -1,4 +1,4 @@
 # English strings go here for Rails i18n
-en:
+pl:
   # my_label: "My label"
-  project_roles_settings: Roles
+  project_roles_settings: Role

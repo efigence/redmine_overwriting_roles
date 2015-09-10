@@ -2,17 +2,18 @@ class ProjectRolesController < ApplicationController
 
   before_filter :find_project
   before_filter :find_role, only: [:save, :edit, :reset]
+  before_filter :assign_project_role, only: [:edit, :save, :reset]
+  before_filter :check_permissions
 
   def index
     @roles = Role.all
   end
 
   def edit
-    @project_role = find_project_role || build_project_role
+    find_project_role
   end
 
   def save
-    @project_role = find_project_role || build_project_role
     @project_role.permissions = params[:project_role][:permissions]
     if @project_role.save
       flash[:notice] = l(:notice_successful_update)
@@ -23,7 +24,7 @@ class ProjectRolesController < ApplicationController
   end
 
   def reset
-    @project_role = find_project_role || build_project_role
+    find_project_role
     @project_role.permissions = @role.permissions
     @project_role.save
     flash[:notice] = l(:notice_successfull_reset)
@@ -41,6 +42,14 @@ class ProjectRolesController < ApplicationController
 
   def find_role
     @role = Role.find(params[:role_id])
+  end
+
+  def assign_project_role
+    @project_role = find_project_role || build_project_role
+  end
+
+  def check_permissions
+    User.current.allowed_to?(:manage_roles, @project) || User.current.admin?
   end
 
 end

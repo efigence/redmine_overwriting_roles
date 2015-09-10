@@ -17,7 +17,7 @@ project_roles_001:
 project_roles_002:
   name: Developer
   id: 2
-  project_id: 2
+  project_id: 1
   role_id: 2
   builtin: 0
   issues_visibility: default

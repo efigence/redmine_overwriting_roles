@@ -1,20 +1,25 @@
-<div class="project-roles-wrapper" style="width:40%;">
+<div class="project-roles-wrapper" id="turbolinks" data-turbolinks-temporary style="width:40%;">
+  <div id="roles">
+    <% @roles = Role.all %>
 
-  <% @roles = Role.all %>
-
-  <table class='list'>
-    <thead>
-      <tr>
-        <th>Role</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @roles.each do |role| %>
-      <tr>
-        <td class='name'><%= link_to role.name, edit_project_role_path(@project, role) %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+    <table class='list'>
+      <thead>
+        <tr>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @roles.each do |role| %>
+        <tr>
+          <td class='name'><%= link_to role.name, edit_project_role_path(@project, role) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+
+<script>
+Turbolinks.visit(url, { change: ['roles'] });
+</script>

@@ -5,18 +5,38 @@ class ProjectRolesControllerTest < Redmine::IntegrationTest
 
   def test_should_allow_project_manager_to_see_roles_settings
     log_user("jsmith", "jsmith")
-    get '/projects/2/settings'
+    project = projects(:projects_002)
+    # byebug
+    # get '/projects/2/'
+    # assert_response :success
+    # assert_select '.settings'
+
+    get '/projects/2/project_roles/'
     assert_response :success
-    assert_select '#tab-roles'
+
+    get '/projects/2/project_roles/1/edit'
+    assert_response :success
+
+    get '/projects/2/project_roles/1/reset'
+    assert_response :redirect
+
   end
 
   def test_should_not_allow_to_see_roles_settings
     log_user("jsmith", "jsmith")
-    get '/projects/2'
     Project.find(2).members.first.roles.where(name: "Manager").first.delete
-    byebug
-    assert_response :success
-    assert_select '.settings', false
+    # get '/projects/2/'
+    # assert_response :success
+    # assert_select '.settings', false
+
+    get '/projects/2/project_roles/'
+    assert_response :missing
+
+    get '/projects/2/project_roles/1/edit'
+    assert_response :missing
+
+    get '/projects/2/project_roles/1/reset'
+    assert_response :missing
   end
 
 end

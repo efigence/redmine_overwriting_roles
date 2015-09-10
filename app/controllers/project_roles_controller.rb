@@ -10,7 +10,6 @@ class ProjectRolesController < ApplicationController
   end
 
   def edit
-    find_project_role
   end
 
   def save
@@ -24,7 +23,6 @@ class ProjectRolesController < ApplicationController
   end
 
   def reset
-    find_project_role
     @project_role.permissions = @role.permissions
     @project_role.save
     flash[:notice] = l(:notice_successfull_reset)
@@ -49,7 +47,8 @@ class ProjectRolesController < ApplicationController
   end
 
   def check_permissions
-    User.current.allowed_to?(:manage_roles, @project) || User.current.admin?
+    unless User.current.admin? || User.current.allowed_to?(:manage_roles, @project)
+      redirect_to home_path
+    end
   end
-
 end

@@ -20,6 +20,6 @@
 </div>
 
 
-<script>
-Turbolinks.visit(url, { change: ['roles'] });
-</script>
+<% content_for :header_tags do %>
+  <%= javascript_include_tag 'application', :plugin => 'redmine_overwriting_roles', 'data-turbolinks-track' => true %>
+<% end %>

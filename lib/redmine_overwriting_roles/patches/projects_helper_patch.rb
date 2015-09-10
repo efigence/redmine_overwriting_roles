@@ -8,8 +8,9 @@ module RedmineOverwritingRoles
           unloadable
 
           def project_settings_tabs_with_project_roles
+            tabs = project_settings_tabs_without_project_roles
+
             if User.current.allowed_to?(:manage_roles, @project) || User.current.admin?
-              tabs = project_settings_tabs_without_project_roles
 
               tabs << {
                 name: 'roles',
@@ -17,8 +18,8 @@ module RedmineOverwritingRoles
                 partial: 'projects/settings/roles',
                 label: :project_roles_settings
               }
-              tabs
             end
+            tabs
           end
 
           alias_method_chain :project_settings_tabs, :project_roles

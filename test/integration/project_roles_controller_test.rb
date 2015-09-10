@@ -10,7 +10,7 @@ class ProjectRolesControllerTest < Redmine::IntegrationTest
     assert_response :success
     assert_equal true, User.current.allowed_to?(:manage_roles, project)
 
-    get '/projects/2/project_roles/'
+    get '/projects/2/project_roles'
     assert_response :success
 
     get '/projects/2/project_roles/1/edit'
@@ -24,7 +24,6 @@ class ProjectRolesControllerTest < Redmine::IntegrationTest
   def test_should_allow_project_manager_to_see_roles_settings
     log_user("jsmith", "jsmith")
     project = projects(:projects_001)
-    byebug
     get '/projects/1/settings'
     assert_response :success
     assert_equal true, User.current.allowed_to?(:manage_roles, project)

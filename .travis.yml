@@ -17,7 +17,7 @@ script:
   - export PATH_TO_PLUGIN=$(pwd)
   - export PATH_TO_REDMINE=$WORKSPACE/redmine
   - bash -x ./.travis-init.sh -r || exit 1
-  - mysql -e 'create database redmine__overwriting_roles_test;'
+  - mysql -e 'create database redmine_overwriting_roles_test;'
   - bash -x ./.travis-init.sh -i || exit 1
   - bash -x ./.travis-init.sh -t || exit 1
   - bash -x ./.travis-init.sh -u || exit 1

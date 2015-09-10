@@ -1,6 +1,6 @@
 test:
   adapter: mysql2
-  database: redmine_overwriting_roles
+  database: redmine_overwriting_roles_test
   username: root
   password: ""
   encoding: utf8

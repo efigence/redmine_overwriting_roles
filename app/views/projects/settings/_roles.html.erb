@@ -5,13 +5,18 @@
     <table class='list'>
       <thead>
         <tr>
-          <th>Role</th>
+          <th colspan="2">Role</th>
         </tr>
       </thead>
       <tbody>
         <% @roles.each do |role| %>
         <tr>
-          <td class='name'><%= link_to role.name, edit_project_role_path(@project, role) %></td>
+          <td class='name'><%= role.name %></td>
+          <td class="buttons" style="width: 30px">
+            <%= link_to l(:button_edit),
+              edit_project_role_path(@project, role),
+              :class => 'icon icon-edit' %>
+          </td>
         </tr>
         <% end %>
       </tbody>
@@ -21,5 +26,5 @@
 
 
 <% content_for :header_tags do %>
-  <%= javascript_include_tag 'application', :plugin => 'redmine_overwriting_roles', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', :plugin => 'redmine_overwriting_roles', 'data-turbolinks-track' => true %>
 <% end %>

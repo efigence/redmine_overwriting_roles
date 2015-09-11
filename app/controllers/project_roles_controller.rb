@@ -10,13 +10,14 @@ class ProjectRolesController < ApplicationController
   end
 
   def edit
+    render partial: 'edit', :layout => false if request.xhr?
   end
 
   def save
     @project_role.permissions = params[:project_role][:permissions]
     if @project_role.save
       flash[:notice] = l(:notice_successful_update)
-      redirect_to "/projects/#{@project.id}/settings/roles"
+      redirect_to settings_project_path(:tab => 'roles')
     else
       render :action => 'edit'
     end

@@ -1,4 +1,4 @@
-# Redmine Overwriting Roles plugin
+# Redmine Overwriting Roles plugin [![Build Status](https://travis-ci.org/efigence/redmine_overwriting_roles.svg?branch=master)](https://travis-ci.org/efigence/redmine_overwriting_roles)
 
 #### Plugin which enables overwriting role permissions in scope of a project.
 
@@ -17,7 +17,7 @@ Developed and tested on Redmine 3.1.0.
 ## Usage
 
 Members who have new permission (:manage_roles) assigned to their role are allowed to overwrite role permissions within the scope of a specific project.
-Admin can chose which permissions should be editable and set them in plugin configuration.
+Admin can choose which permissions should be editable and set them in plugin configuration.
 
 ## License
 

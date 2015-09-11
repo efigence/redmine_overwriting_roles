@@ -1,4 +1,4 @@
-<div class="project-roles-wrapper" id="turbolinks" data-turbolinks-temporary style="width:40%;">
+<div class="project-roles-wrapper" id="content" style="width:40%;">
   <div id="roles">
     <% @roles = Role.all %>
 
@@ -14,8 +14,8 @@
           <td class='name'><%= role.name %></td>
           <td class="buttons" style="width: 30px">
             <%= link_to l(:button_edit),
-              edit_project_role_path(@project, role),
-              :class => 'icon icon-edit' %>
+            edit_project_role_path(@project, role),
+            :class => 'icon icon-edit'%>
           </td>
         </tr>
         <% end %>
@@ -25,6 +25,3 @@
 </div>
 
 
-<% content_for :header_tags do %>
-<%= javascript_include_tag 'application', :plugin => 'redmine_overwriting_roles', 'data-turbolinks-track' => true %>
-<% end %>

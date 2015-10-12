@@ -15,10 +15,6 @@ class ProjectRole < ActiveRecord::Base
 
   serialize :permissions, ::Role::PermissionsAttributeCoder
 
-  def roles_permissions
-    Setting.plugin_overwriting_roles["permissions"]
-  end
-
   def setable_permissions
     setable_permissions = Array.new
     Setting.plugin_redmine_overwriting_roles["permissions"].each do |setting|

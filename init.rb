@@ -12,6 +12,7 @@ Redmine::Plugin.register :redmine_overwriting_roles do
   require 'redmine_overwriting_roles/patches/role_patch'
 
   ActionDispatch::Callbacks.to_prepare do
+    require 'redmine_overwriting_roles/patches/project_patch'
     require 'redmine_overwriting_roles/patches/projects_helper_patch'
     require 'redmine_overwriting_roles/patches/user_patch'
   end
